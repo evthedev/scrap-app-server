@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
     Image.find()
       .sort({ dateCreated: -1 })
       .then(images => res.json(images))
-      .catch(err => res.status(404).json({ noimagesfound: 'No images found' }));
-  });
+      .catch(err => res.status(404).json({ noimagesfound: 'No images found' }))
+  })
 
 // @route   POST api/images
 // @desc    Create image
@@ -27,16 +27,41 @@ router.post(
     '/',
     // TODO: Auth
     (req, res) => {
-  
       const newImage = new Image({
         name: req.body.name,
         description: req.body.description,
         // TODO: thumbnail
 
-      });
+      })
   
-      newImage.save().then(image => res.json(image));
+      newImage.save().then(image => res.json({
+        message: 'Successfully posted',
+        image
+      }))
     }
-);
-  
+)
+
+// @route   DELETE api/images/:id
+// @desc    Delete image
+// @access  Private
+router.delete(
+  '/:id',
+  // TODO: Auth
+  (req, res) => {
+      Image.findById(req.params.id)
+      .then(image => {
+        // TODO: Check for image owner
+        // if (image.user.toString() !== req.user.id) {
+        //   return res
+        //     .status(401)
+        //     .json({ notauthorized: 'User not authorized' })
+        // }
+
+        // Delete
+        image.remove().then(() => res.json({ message: 'Successfully deleted' }))
+      })
+      .catch(err => res.status(404).json({ message: 'Image not found' }))
+  }
+)
+
 module.exports = router
