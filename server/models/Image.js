@@ -9,8 +9,8 @@ const ImageSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    thumbnail: String
-    // TODO: userId
+    thumbnail: String,
+    userId: String
 })
 
 module.exports = mongoose.model('image', ImageSchema)

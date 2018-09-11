@@ -1,9 +1,10 @@
 import express from 'express'
+import passport from 'passport'
 const router = express.Router()
 
 // TODO: Passport stuff
 
-// Post model
+// Image model
 const Image = require('../../models/Image')
 // @route   GET api/images/test
 // @desc    Tests image route
@@ -25,11 +26,12 @@ router.get('/', (req, res) => {
 // @access  Private
 router.post(
     '/',
-    // TODO: Auth
+    passport.authenticate('jwt', { session: false }),
     (req, res) => {
       const newImage = new Image({
         name: req.body.name,
         description: req.body.description,
+        userId: req.user.id
         // TODO: thumbnail
 
       })
