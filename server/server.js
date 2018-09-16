@@ -10,6 +10,7 @@ import { mongoURI as db } from '../config/keys'
 // import models and routes
 import images from './routes/api/images'
 import users from './routes/api/users'
+import projects from './routes/api/projects'
 
 const app = express()
 
@@ -45,6 +46,7 @@ app.use((req, res, next) => {
 // Use Routes
 app.use('/api/images', images)
 app.use('/api/users', users)
+app.use('/api/projects', projects)
 
 
 // TODO: Serve static assets if in production

@@ -31,7 +31,7 @@ router.post(
       const newImage = new Image({
         name: req.body.name,
         description: req.body.description,
-        userId: req.user.id
+        userId: req.user.id,
         // TODO: thumbnail
 
       })
@@ -41,6 +41,41 @@ router.post(
         image
       }))
     }
+)
+
+// @route   PUT api/images/:id
+// @desc    Update image
+// @access  Private
+router.put(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    
+    // Get request params
+    const imageId = req.params.id
+    
+    // Get request body
+    const { name, description, groupId } = req.body
+
+    Image.findById(imageId, (err, image) => {
+      if (err) {
+        res.status(404).json({ message: 'Image not found' })
+      } else {
+        // Check if groupId is set and if image groups does not already include it
+        if (groupId && !image.groupIds.filter(group => group.groupId === groupId).length) {
+          image.groupIds.push({ groupId })
+        }
+        if (name) image.name = name
+        if (description) image.description = description
+
+        image.save().then(updatedImage => res.json({
+          message: 'Image successfully updated',
+          image: updatedImage
+        }))
+
+      }
+    })
+  }
 )
 
 // @route   DELETE api/images/:id
