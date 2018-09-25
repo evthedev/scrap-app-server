@@ -62,8 +62,8 @@ router.put(
         res.status(404).json({ message: 'Image not found' })
       } else {
         // Check if groupId is set and if image groups does not already include it
-        if (groupId && !image.groupIds.filter(group => group.groupId === groupId).length) {
-          image.groupIds.push({ groupId })
+        if (groupId && !image.groupIds.includes(groupId)) {
+          image.groupIds.push(groupId)
         }
         if (name) image.name = name
         if (description) image.description = description

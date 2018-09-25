@@ -15,7 +15,7 @@ chai.use(chaiHttp)
 
 const mockUser = {
 	name: 'Test Name',
-	email: 'test3@email.com',
+	email: 'test5@email.com',
 	password: 'Test Password'
 }
 
@@ -23,9 +23,13 @@ let testUserId
 
 describe('Images', () => {
 
+	beforeEach((done) => {
+		Image.deleteMany({}, (err) => {console.log(err)})
+		done()
+	})
+
 	before((done) => {
-		Image.deleteMany({}, (err) => {})
-		chai.request(server)
+			chai.request(server)
 			.post('/api/users/signup')
 			.send(mockUser)
 			.end((err, res) => {
@@ -106,6 +110,35 @@ describe('Images', () => {
 					.end((err, res) => {
 						expect(res.statusCode, 'Should be 200 at get images').to.equal(200)
 						expect(res.body.length, 'Should have 1 image').to.equal(1)
+					})
+			})
+
+	})
+
+	it.only('PUT/images with auth with groupId', () => {
+		const image = {
+			name: 'Test Image',
+			description: 'Test Description'
+		}
+		const groupId = 'Test Group Id'
+		request
+			.post('/api/images')
+			.set('Authorization', auth.token)
+			.send(image)
+			.then((res) => {
+				expect(res.statusCode, 'Should be 200 at post image').to.equal(200)
+				expect(res.body.message, 'Should succeed').to.equal('Successfully posted')
+				expect(res.body.image._id, 'Should have Id').to.exist
+				const imageId = res.body.image._id
+				request
+					.put('/api/images/' + imageId)
+					.send(groupId)
+					.end((err, res) => {
+						console.log('res.body: ', res.body);
+						expect(res.statusCode, 'Should be 200 at get images').to.equal(200)
+						expect(res.body.length, 'Should have 1 image').to.equal(1)
+						expect(res.body.image.groupIds.length, 'Should have 1 image').to.equal(1)
+						expect(res.body.image.groupIds[0], 'Should equal Test Group Id').to.equal('Test Group Id')
 					})
 			})
 

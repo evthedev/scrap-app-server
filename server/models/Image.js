@@ -11,9 +11,7 @@ const ImageSchema = new Schema({
     },
     thumbnail: String,
     userId: String,
-    groupIds: [
-        { groupId: String }
-    ]
+    groupIds: []
 })
 
 module.exports = mongoose.model('image', ImageSchema)

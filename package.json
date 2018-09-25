@@ -10,15 +10,23 @@
   "author": "Ev Ooi",
   "license": "ISC",
   "dependencies": {
+    "apollo-cache-inmemory": "^1.2.10",
+    "apollo-client": "^2.4.2",
+    "apollo-link-rest": "^0.5.0",
+    "apollo-server-express": "^2.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.9.2",
     "gravatar": "^1.6.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.13",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "react-apollo": "^2.1.11"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
