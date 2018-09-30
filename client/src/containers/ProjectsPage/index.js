@@ -1,39 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { graphql, Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
-import { loadImages } from '../../structural/images/actions'
+import { loadProjects } from '../../structural/projects/actions'
 
-import logo from './logo.svg';
 import './styles.css';
 
+const GET_PROJECTS = gql`
+  {
+      projects @rest(type: "Projects", path: "/projects") {
+          _id
+          name
+          description
+      }
+  }
+`
+
 class ProjectsPage extends Component {
+  constructor(props) {
+    super(props)
+  }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Reacty</h1>
-          <p onClick={this.props.actions.loadImages}>Load images</p>}
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+
+      
+      <Query query={GET_PROJECTS}>
+        {({data: { projects }, loading}) => {
+          if (loading) {
+            return (
+              <div>Loading</div>
+            )
+          } else {
+            return (
+              <ul>
+                {projects.map(project => (
+                  <li key={project._id}>
+                    <p>{project.name}</p>
+                    <p>{project.description}</p>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        }}
+      </Query>
+
+      
+    )
   }
 }
 
-const mapStateToProps = (state) => ({
-  loading: state.loading
-})
+export default ProjectsPage
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: {
-      loadImages: () => console.log('helo') || dispatch(loadImages())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPage);

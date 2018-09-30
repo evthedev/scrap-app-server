@@ -15,7 +15,7 @@ chai.use(chaiHttp)
 
 const mockUser = {
 	name: 'Test Name',
-	email: 'test3@email.com',
+	email: 'test4@email.com',
 	password: 'Test Password'
 }
 
