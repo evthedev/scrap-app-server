@@ -1,10 +1,16 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import passport from 'passport'
 import morgan from 'morgan'
+
+// DB Config
+import { mongoURI as db } from '../config/keys'
 
 // import models and routes
 import images from './routes/api/images'
+import users from './routes/api/users'
+import projects from './routes/api/projects'
 
 const app = express()
 
@@ -13,11 +19,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-// DB Config
-const db = require('../config/keys').mongoURI
 
-// TODO Passport middleware stuff
 
+// const db = require('../config/keys').mongoURI
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('../config/passport')(passport);
 
 // Connect to MongoDB
 mongoose
@@ -35,6 +45,8 @@ app.use((req, res, next) => {
 
 // Use Routes
 app.use('/api/images', images)
+app.use('/api/users', users)
+app.use('/api/projects', projects)
 
 
 // TODO: Serve static assets if in production
@@ -51,3 +63,6 @@ app.use('/api/images', images)
 const port = process.env.PORT || 5000
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Export for testing
+module.exports = app

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 // Define model schema
-const ImageSchema = new Schema({
+const ProjectSchema = new Schema({
     name: String,
     description: String,
     dateCreated: {
@@ -10,8 +10,7 @@ const ImageSchema = new Schema({
         default: Date.now
     },
     thumbnail: String,
-    userId: String,
-    groupIds: []
+    userId: String
 })
 
-module.exports = mongoose.model('image', ImageSchema)
+module.exports = mongoose.model('project', ProjectSchema)
