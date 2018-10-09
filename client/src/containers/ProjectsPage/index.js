@@ -37,6 +37,7 @@ class ProjectsPage extends Component {
               <ul>
                 {projects.map(project => (
                   <li key={project._id}>
+                    <p>{project._id}</p>
                     <p>{project.name}</p>
                     <p>{project.description}</p>
                   </li>
