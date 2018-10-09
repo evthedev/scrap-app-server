@@ -22,6 +22,7 @@ import configureStore from './store'
 
 import Home from './containers/Home';
 import ProjectsPage from './containers/ProjectsPage';
+import ProjectsPageId from './containers/ProjectsPageId';
 import registerServiceWorker from './registerServiceWorker';
 
 const restLink = new RestLink({
@@ -56,9 +57,8 @@ const App = (
         <ConnectedRouter history={history} store={store}>
             <div>
                 <Route exact path="/" component={Home} />
-                <Route path="/projects" component={ProjectsPage} />
-                {/* <Route path="/projects/:id" component={Project} /> */}
-                {/* <Route path="/projects" component={Project} /> */}
+                <Route path="/projects" exact component={ProjectsPage} />
+                <Route path="/projects/:id" component={ProjectsPageId} />
 
             </div>
         </ConnectedRouter>
