@@ -28,7 +28,7 @@ const uploader = new FineUploaderS3({
       accessKey: 'AKIAJYA6XGDJT3BMIXFA'
     },
     signature: {
-      endpoint: 'http://localhost:3000',
+      endpoint: 'https://scrappah.herokuapp.com',
       // version: 4
     },
     // chunking: {
