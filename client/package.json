@@ -19,8 +19,7 @@
     "redux-saga": "^0.16.0",
     "react-scripts": "1.1.5"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
