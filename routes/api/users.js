@@ -5,7 +5,7 @@ import jsonwebtoken from 'jsonwebtoken'
 import passport from 'passport'
 
 // DB Config
-import keys from '../../../config/keys'
+import keys from '../../config/keys'
 
 const router = express.Router()
 

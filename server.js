@@ -5,7 +5,7 @@ import passport from 'passport'
 import morgan from 'morgan'
 
 // DB Config
-import { mongoURI as db } from '../config/keys'
+import { mongoURI as db } from './config/keys'
 
 // import models and routes
 import images from './routes/api/images'
@@ -27,7 +27,7 @@ app.use(morgan('dev'))
 app.use(passport.initialize());
 
 // Passport Config
-require('../config/passport')(passport);
+require('./config/passport')(passport);
 
 // Connect to MongoDB
 mongoose
