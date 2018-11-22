@@ -153,26 +153,6 @@ router.get('/config', (req, res) => res.json(
               "dividend": 4,
               "country": "AUS",
               "currency": "AUD"
-            },
-            {
-              "name": "gold",
-              "engine": "GOLD",
-              "label": "Gold",
-              "canBeHeld": true,
-              "return": 5,
-              "dividend": 0,
-              "country": "AUS",
-              "currency": "USD"
-            },
-            {
-              "name": "gold",
-              "engine": "GOLD",
-              "label": "Gold",
-              "canBeHeld": true,
-              "return": 5,
-              "dividend": 0,
-              "country": "AUS",
-              "currency": "USD"
             }
           ],
           "superContributionFee": 0,
