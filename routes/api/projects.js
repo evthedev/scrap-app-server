@@ -160,7 +160,17 @@ router.get('/config', (req, res) => res.json(
               label: "Growth Alternatives",
               name: "growthAlternatives",
               return: 6.5
-            }
+            },
+            {
+              canBeHeld: true,
+              country: "AUS",
+              currency: "USD",
+              dividend: 2.3,
+              engine: "GOLD",
+              label: "Gold",
+              name: "Gold",
+              return: 5.3
+            },
           ],
           superContributionFee: 0,
           otherContributionFee: 0,
