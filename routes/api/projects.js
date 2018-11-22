@@ -550,6 +550,9 @@ router.get('/config', (req, res) => res.json(
                 "isOwnHome": true,
                 "valuation": 0,
                 "rentWeekly": 0
+              },
+              "target": {
+                "confidenceLevel": 90
               }
             },
             "persons": {
@@ -618,11 +621,11 @@ router.get('/config', (req, res) => res.json(
                     "fixedAmount": 0,
                     "percentageOfAssets": 0
                   },
-                  "upfrontAmount": 0,
-                  "other": {
-                    "amount": 0,
-                    "frequency": 1
-                  }
+                  "upfrontAmount": 0
+                },
+                "other": {
+                  "amount": 0,
+                  "frequency": 1
                 }
               },
               "work": {
@@ -632,15 +635,15 @@ router.get('/config', (req, res) => res.json(
               }
             }
           },
-          "insuranceNeeds": {
-            "ageYoungestChild": 0,
-            "childFundingAge": 0,
-            "children": 0,
-            "requiredIncome": {
-              "calculationType": "householdFixedCostsPercentage",
-              "value": 0,
-              "replacementIncomePercentage": 75,
-              "householdFixedCostsPercentage": 33
+          insuranceNeeds: {
+            ageYoungestChild: 0,
+            childFundingAge: 25,
+            children: 0,
+            requiredIncome: {
+              calculationType: "householdFixedCostsPercentage",
+              value: 0,
+              replacementIncomePercentage: 75,
+              householdFixedCostsPercentage: 33
             }
           }
         },
