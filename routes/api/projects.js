@@ -49,7 +49,48 @@ router.get('/config', (req, res) => res.json(
               return: 0
             }
           ],
-          assetAllocations: {},
+          assetAllocations: {
+            conservative: {
+              cash: 20,
+              bonds: 50,
+              property: 10,
+              australianEquity: 10,
+              internationalEquity: 10,
+              gold: 0
+            },
+            moderate: {
+              cash: 10,
+              bonds: 40,
+              property: 10,
+              australianEquity: 20,
+              internationalEquity: 20,
+              gold: 0
+            },
+            balanced: {
+              cash: 5,
+              bonds: 30,
+              property: 15,
+              australianEquity: 30,
+              internationalEquity: 20,
+              gold: 0
+            },
+            growth: {
+              cash: 5,
+              bonds: 10,
+              property: 15,
+              australianEquity: 40,
+              internationalEquity: 30,
+              gold: 0
+            },
+            aggressive: {
+              cash: 0,
+              bonds: 0,
+              property: 20,
+              australianEquity: 40,
+              internationalEquity: 40,
+              gold: 0
+            }
+          },
           assetClasses: [{
               canBeHeld: true,
               country: "AUS",
