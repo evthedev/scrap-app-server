@@ -168,7 +168,7 @@ router.get('/config', (req, res) => res.json(
               dividend: 2.3,
               engine: "GOLD",
               label: "Gold",
-              name: "Gold",
+              name: "gold",
               return: 5.3
             },
           ],
